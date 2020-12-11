@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Code in this project is based on a [DZone tutorial](https://dzone.com/articles/integrating-spring-boot-and-react-with-spring-secu-1).
+
 ## Available Scripts
 
 In the project directory, you can run:
