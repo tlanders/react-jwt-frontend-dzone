@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import CourseDataService from "../service/CourseDataService";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 
+const INSTRUCTOR = 'in28minutes';
+
 class CourseComponent extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +32,19 @@ class CourseComponent extends Component {
     }
 
     onSubmit(values) {
+        let course = {
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        };
+
+        if(this.state.id == -1) {
+            CourseDataService.createCourse(INSTRUCTOR, course)
+                .then(() => this.props.history.push('/courses'));
+        } else {
+            CourseDataService.updateCourse(INSTRUCTOR, this.state.id, course)
+                .then(() => this.props.history.push('/courses'));
+        }
         console.log(values);
     }
 
