@@ -7,12 +7,7 @@ const INSTRUCTOR_API_URL = `${COURSE_API_URL}/instructors/${INSTRUCTOR}`;
 class CourseDataService {
     retrieveAllCourses(name) {
         console.log('retrieveAllCourses')
-        return axios.get(`${INSTRUCTOR_API_URL}/courses`,
-            {
-                headers: {
-                    Authorization: 'Basic ' + window.btoa("user:password")
-                }
-            });
+        return axios.get(`${INSTRUCTOR_API_URL}/courses`);
     }
 
     deleteCourse(name, id) {

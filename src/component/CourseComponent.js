@@ -20,7 +20,7 @@ class CourseComponent extends Component {
         const id = this.state.id;
         console.log('course component: ' + id);
 
-        if(id == -1) {
+        if(id === -1) {
             return;
         }
 
@@ -38,7 +38,7 @@ class CourseComponent extends Component {
             targetDate: values.targetDate
         };
 
-        if(this.state.id == -1) {
+        if(this.state.id === -1) {
             CourseDataService.createCourse(INSTRUCTOR, course)
                 .then(() => this.props.history.push('/courses'));
         } else {
