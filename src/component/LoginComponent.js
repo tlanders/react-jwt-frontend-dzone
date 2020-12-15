@@ -17,10 +17,10 @@ class LoginComponent extends React.Component {
 
     loginClicked() {
         console.log('login clicked');
-        AuthenticationService.executeBasicAuth(this.state.username, this.state.password)
-            .then(() => {
-                console.log('registering login success')
-                AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
+        AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
+            .then((response) => {
+                console.log('login success')
+                AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, response.data.token)
                 this.props.history.push('/courses')
             })
             .catch(err => {

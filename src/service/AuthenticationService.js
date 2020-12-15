@@ -4,6 +4,24 @@ const USER_NAME_SESSION_ATTRIBUTE_NAME = 'USER_NAME_SESSION_ATTRIBUTE_NAME';
 const API_URL = 'http://localhost:8080';
 
 class AuthenticationService {
+    executeJwtAuthenticationService(user, pass) {
+        console.log('executeJwtAuthenticationService: ' + user);
+        return axios.post(`${API_URL}/authenticate`, {
+            username: user,
+            password: pass
+        });
+    }
+
+    registerSuccessfulLoginForJwt(user, token) {
+        console.log('registering successful login for ' + user + ', token: ' + token);
+        sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, user);
+        this.setupAxiosInterceptors(this.createJwtToken(token));
+    }
+
+    createJwtToken(token) {
+        return 'Bearer ' + token;
+    }
+
     registerSuccessfulLogin(user, pass) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, user);
         this.setupAxiosInterceptors(this.createBasicAuthToken(user, pass));
